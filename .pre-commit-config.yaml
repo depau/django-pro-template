@@ -1,0 +1,58 @@
+---
+default_install_hook_types: [ pre-commit, pre-merge-commit ]
+repos:
+  - repo: local
+    hooks:
+      - id: uv-mypy
+        name: mypy
+        language: system
+        entry: uv run mypy
+        types_or: [ python, pyi ]
+        args: [ "--ignore-missing-imports", "--scripts-are-modules" ]
+        require_serial: true
+        additional_dependencies: [ ]
+        stages: [ pre-commit, pre-merge-commit, manual ]
+
+      - id: uv-ruff
+        name: ruff
+        description: "Run 'ruff' for extremely fast Python linting"
+        entry: uv run ruff check --force-exclude
+        language: system
+        types_or: [ python, pyi, jupyter ]
+        args: [ --fix ]
+        require_serial: true
+        additional_dependencies: [ ]
+        stages: [ pre-commit, pre-merge-commit, manual ]
+
+      - id: uv-ruff-format
+        name: ruff-format
+        description: "Run 'ruff format' for extremely fast Python formatting"
+        entry: uv run ruff format --force-exclude
+        language: system
+        types_or: [ python, pyi, jupyter ]
+        args: [ ]
+        require_serial: true
+        additional_dependencies: [ ]
+        stages: [ pre-commit, pre-merge-commit, manual ]
+
+      - id: django-test
+        name: django tests
+        entry: uv run python manage.py test
+        always_run: true
+        pass_filenames: false
+        language: system
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-merge-conflict
+        args: [ --assume-in-merge ]
+      - id: check-illegal-windows-names
+      - id: check-added-large-files
+      - id: forbid-submodules
+      - id: check-case-conflict
+      - id: mixed-line-ending
+      - id: check-toml
+      - id: check-vcs-permalinks
+      - id: detect-aws-credentials
+        args: [ --allow-missing-credentials ]

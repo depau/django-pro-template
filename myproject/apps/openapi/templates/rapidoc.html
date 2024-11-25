@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title|default:"REST API documentation" }}</title>
+    <script type="module" src="{{ dist }}/dist/rapidoc-min.js"></script>
+</head>
+<body>
+<rapi-doc
+        spec-url="{{ schema_url }}"
+        use-path-in-nav-bar="true"
+        show-method-in-nav-bar="as-colored-block"
+        show-header="false"
+        heading-text="REST API documentation"
+></rapi-doc>
+</body>
+</html>

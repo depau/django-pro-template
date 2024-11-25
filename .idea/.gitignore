@@ -1,0 +1,20 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
+# Delete everything else
+*
+
+# Ignore everything except
+!runConfigurations/*
+!inspectionProfiles/*
+!dataSources.xml
+!.gitignore
+
+# Prevent further modifications from being committed
+/runConfigurations/Sync_project.xml
